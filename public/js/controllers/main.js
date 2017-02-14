@@ -21,6 +21,8 @@ angular.module('LagoonApp')
     $scope.editlink = '';
     $scope.svglink = '';
     $scope.showerror = false;
+    $scope.showform = true;
+    window.base64 = base64;
 
     $scope.checkUpdate = function() {
         $scope.viewlink = buildURL('view', $scope.mermaidsyntax);
@@ -58,9 +60,11 @@ angular.module('LagoonApp')
         // ##uriEncodedDiagramString (for backwards compatibility)
         if ($location.hash()) {
             code = $location.hash();
+            code = base64.urldecode(code.split('/')[2]);
+            console.log(code);
             return viewDiagram(code);
         }
-
+/*
         // #/view/base64EncodedDiagramString
         if ($location.path().match(/^\/view\//)) {
             code = base64.urldecode($location.path().split('/')[2]);
@@ -72,24 +76,23 @@ angular.module('LagoonApp')
             code = base64.urldecode($location.path().split('/')[2]);
             return editDiagram(code);
         }
-
-        return editDiagram($scope.exampleCode);
+*/
+        return resetDiagram();
     }
 
     function viewDiagram(code) {
         $scope.mermaidsyntax = code;
-        // Delete the other elements and leave only the diagram
-        $scope.showform = false;
-        $scope.diagclass = 'col s12 m12 l12';
-        $scope.cardclass = '';
         $scope.checkUpdate();
     }
 
     function editDiagram(code) {
         $scope.mermaidsyntax = code;
-        $scope.showform = true;
-        $scope.diagclass = 'col s12 m12 l9';
-        $scope.cardclass = 'card';
+        document.getElementById('diagramCode').focus();
+        $scope.checkUpdate();
+    }
+
+    function resetDiagram() {
+        $scope.mermaidsyntax = $scope.exampleCode;
         document.getElementById('diagramCode').focus();
         $scope.checkUpdate();
     }
