@@ -3,10 +3,8 @@
 
 module.exports = function (sequelize, DataTypes) {
 
-  var Article = sequelize.define('Article', {
-    title: DataTypes.STRING,
-    url: DataTypes.STRING,
-    text: DataTypes.STRING
+  var Diagram = sequelize.define('Diagram', {
+    encoded_data: DataTypes.STRING(1024)
   }, {
     classMethods: {
       associate: function (models) {
@@ -16,6 +14,6 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  return Article;
+  return Diagram;
 };
 
