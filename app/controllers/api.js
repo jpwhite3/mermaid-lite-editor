@@ -30,7 +30,7 @@ router.delete('/diagram/:diagramId', function (req, res, next) {
         }
     }, function(err, diagram) {
         if (err){
-            res.send(err);
+            res.status(500).send(error);
         }
         res.json({ message: 'Successfully deleted' });
     });
@@ -42,16 +42,20 @@ router.post('/diagram/', function (req, res, next) {
         encoded_data: req.body.encoded_data
     });
 
-    diagram.save().then(function(anotherTask) {
-        res.json(diagram);
+    diagram.save()
+    .then(function(anotherTask) {
+        res.status(201).json(diagram);
     }).catch(function(error) {
-        res.send(error);
+        res.status(500).send(error);
     });
-
 });
 
 router.get('/diagrams/', function (req, res, next) {
-    db.Diagram.findAll().then(function (diagrams) {
+    db.Diagram.findAll()
+    .then(function (diagrams) {
         res.send(diagrams);
+    })
+    .catch(function(error) {
+        res.status(500).send(error);
     });
 });
