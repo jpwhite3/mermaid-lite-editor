@@ -10,12 +10,10 @@
 angular.module('LagoonApp')
 .controller('MainCtrl', ['$scope', '$sce', '$location', 'base64', function($scope, $sce, $location, base64) {
     var absurl = window.location.href.split('#')[0];
-    $scope.exampleCode = 'sequenceDiagram\n' +
-      'A->> B: Query\n' +
-      'B->> C: Forward query\n' +
-      'Note right of C: Thinking...\n' +
-      'C->> B: Response\n' +
-      'B->> A: Forward response\n';
+    
+    $scope.exampleSelect = '';
+    $scope.exampleCode = 'graph LR\n' +
+      'A((START)) --> B((END))';
 
     $scope.viewlink = '';
     $scope.editlink = '';
@@ -105,5 +103,63 @@ angular.module('LagoonApp')
         var svg = document.querySelector('svg').outerHTML;
         return 'data:image/svg+xml;base64,' + base64.encode(svg);
     }
+
+    $scope.$watch('exampleSelect', function (newValue, oldValue, scope) {
+        if(newValue){
+            var code = '';
+            if(newValue == 'fc-t2b'){
+                code = 'graph TB\n' +
+                  'A[Hard edge] --Link text--> B(Round edge)\n' +
+                  'B --> C{Decision}\n' +
+                  'C -->|One| D[fa:fa-ban forbidden Result one]\n' +
+                  'C -->|Two| E[Result two]\n' +
+                  'E --> F((END))';
+            }
+            else if(newValue == 'fc-b2t'){
+                code = 'graph BT\n' +
+                  'A[Hard edge] -->|Link text| B(Round edge)\n' +
+                  'B --> C{Decision}\n' +
+                  'C -->|One| D[fa:fa-ban forbidden Result one]\n' +
+                  'C -->|Two| E[Result two]\n' +
+                  'E --> F((END))';
+            }
+            else if(newValue == 'fc-l2r'){
+                code = 'graph LR\n' +
+                  'A[Hard edge] -->|Link text| B(Round edge)\n' +
+                  'B --> C{Decision}\n' +
+                  'C -->|One| D[fa:fa-ban forbidden Result one]\n' +
+                  'C -->|Two| E[Result two]\n' +
+                  'E --> F((END))';
+            }
+            else if(newValue == 'fc-r2l'){
+                code = 'graph RL\n' +
+                  'A[Hard edge] -->|Link text| B(Round edge)\n' +
+                  'B --> C{Decision}\n' +
+                  'C -->|One| D[fa:fa-ban forbidden Result one]\n' +
+                  'C -->|Two| E[Result two]\n' +
+                  'E --> F((END))';
+            }
+            else if(newValue == 'sequence'){
+                code = 'sequenceDiagram\n' +
+                  'A->> B: Query\n' +
+                  'B->> C: Forward query\n' +
+                  'Note right of C: Thinking...\n' +
+                  'C->> B: Response\n' +
+                  'B->> A: Forward response\n';
+            }
+            else if(newValue == 'gantt'){
+                code = 'gantt\n' +
+                  'title A Gantt Diagram\n' +
+                  'section Section\n' +
+                  'A task           :a1, 2014-01-01, 30d\n' +
+                  'Another task     :after a1  , 20d\n' +
+                  'section Another\n' +
+                  'Task in sec      :2014-01-12  , 12d\n' +
+                  'anther task      : 24d';
+            }
+            viewDiagram(code);
+        }
+    });
+
 
 }]);

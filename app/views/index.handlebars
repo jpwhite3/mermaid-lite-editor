@@ -7,6 +7,20 @@
     <div class="col-lg-3">
         <form method="post" action="./">
             <div class="form-group">
+                <label for="exampleSelect">Load Example:</label>
+                <select id="exampleSelect" class="form-control" ng-model="exampleSelect">
+                    <option value="">-----</option>
+                    <optgroup label="Flow chart">
+                        <option value="fc-t2b">Top to bottom</option>
+                        <option value="fc-b2t">Bottom to top</option>
+                        <option value="fc-l2r">Left to right</option>
+                        <option value="fc-r2l">Right to left</option>
+                    </optgroup>
+                    <option value="sequence">Sequence Diagram</option>
+                    <option value="gantt">Gantt chart</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="diagramCode">Diagram Code:</label>
                 <textarea 
                     id="diagramCode" 
@@ -47,7 +61,7 @@
                         <i class="fa fa-pencil" aria-hidden="true"></i> Edit
                     </a>
                     <a class="btn btn-default" ng-href="{%svglink%}" download="diagram.svg">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                        <i class="fa fa-picture-o" aria-hidden="true"></i> Export
                     </a>
                 </div>
             </div>
