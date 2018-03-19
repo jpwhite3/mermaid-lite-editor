@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="JP White">
+        <link rel="icon" href="img/favicon.ico">
+
+        <title>Lagoon</title>
+
+        <!-- Bootstrap CSS -->
+        <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+        <link href="css/vendor/bootstrap-theme.min.css" rel="stylesheet">
+
+        <!-- Extras -->
+        <link href="css/vendor/fontawesome-all.min.css" rel="stylesheet">
+        <link href="css/vendor/mermaid.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+
+    <body ng-app="LagoonApp" ng-controller="MainCtrl">
+        <!-- Top menu -->
+        <header>
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="#">Lagoon</a>
+            </nav>
+        </header>
+
+        <!-- Begin page content -->
+        <main role="main" class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-header">Code Panel</div>
+                        <div class="card-body">
+                            <form method="post" action="./">
+                                <div class="form-group">
+                                    <select id="exampleSelect" class="form-control" ng-model="exampleSelect">
+                                        <option value="">Load Example &hellip;</option>
+                                        <optgroup label="Flow chart">
+                                            <option value="fc-t2b">Top to bottom</option>
+                                            <option value="fc-b2t">Bottom to top</option>
+                                            <option value="fc-l2r">Left to right</option>
+                                            <option value="fc-r2l">Right to left</option>
+                                        </optgroup>
+                                        <option value="sequence">Sequence Diagram</option>
+                                        <option value="gantt">Gantt chart</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="diagramCode">Diagram Code:</label>
+                                    <textarea id="diagramCode" class="form-control" style="font-family:'Consolas',fixed-width; height:300px" required ng-model="mermaidsyntax"
+                                        ng-change="checkUpdate()"></textarea>
+                                </div>
+                            </form>
+                            <div ng-show="showerror">
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i> &nbsp; Invalid syntax
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">Sample syntax</div>
+                                <div class="card-body">
+                                    <p>This app uses the
+                                        <a href="http://knsv.github.io/mermaid/index.html">mermaid</a> library to generate graphs and sequence diagrams. Syntax for sequence diagrams can be found
+                                        <a href="http://knsv.github.io/mermaid/#sequence-diagrams">here.</a>
+                                    </p>
+                                    <hr>
+                                    <pre>{%exampleCode%}</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="card">
+                        <div class="card-header">Generated Diagram</div>
+                        <div class="card-body">
+                            <span id="mermaidholder"></span>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a class="btn btn-outline-secondary" ng-href="{%viewlink%}">
+                                    <i class="fas fa-share-alt-square" aria-hidden="true"></i> Sharable Link
+                                </a>
+                                <a class="btn btn-outline-secondary" ng-href="{%svglink%}" download="diagram.svg">
+                                    <i class="fas fa-save" aria-hidden="true"></i> Save as SVG
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <span class="text-muted">Powered by
+                <a href="http://knsv.github.io/mermaid/" class="navbar-link">Mermaid</a></span>
+            </div>
+        </footer>
+
+        <!-- Core JavaScript -->
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/popper.min.js"></script>
+        <script src="js/vendor/bootstrap.bundle.min.js"></script>
+        <script src="js/vendor/mermaid.min.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/vendor/angular-sanitize.min.js"></script>
+        <script src="js/vendor/angular-utf8-base64.min.js"></script>
+
+        <!-- Angular App -->
+        <script src="/js/app.js"></script>
+        <script src="/js/controllers/main.js"></script>
+
+    </body>
+</html>
