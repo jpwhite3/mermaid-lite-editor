@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name LagoonApp
+ * @name MermaidLiteApp
  * @description
- * # LagoonApp
+ * # MermaidLiteApp
  *
  * Main module of the application.
  */
 angular
-  .module('LagoonApp', ['ngSanitize', 'ab-base64'])
+  .module('MermaidLiteApp', ['ngSanitize', 'ab-base64'])
   .config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('{%');
     $interpolateProvider.endSymbol('%}');

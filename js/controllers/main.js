@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name LagoonApp.controller:MainCtrl
+ * @name MermaidLiteApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the LagoonApp
+ * Controller of the MermaidLiteApp
  */
-angular.module('LagoonApp')
+angular.module('MermaidLiteApp')
 .controller('MainCtrl', ['$scope', '$sce', '$location', 'base64', function($scope, $sce, $location, base64) {
     var absurl = window.location.href.split('#')[0];
     
@@ -150,6 +150,83 @@ angular.module('LagoonApp')
                   'section Another\n' +
                   'Task in sec      :2014-01-12  , 12d\n' +
                   'anther task      : 24d';
+            }
+            else if(newValue == 'classDiagram'){
+                code = 'classDiagram\n' +
+                '    Animal <|-- Duck\n' +
+                '    Animal <|-- Fish\n' +
+                '    Animal <|-- Zebra\n' +
+                '    Animal : +int age\n' +
+                '    Animal : +String gender\n' +
+                '    Animal: +isMammal()\n' +
+                '    class Duck{\n' +
+                '      +String beakColor\n' +
+                '      +swim()\n' +
+                '      +quack()\n' +
+                '    }\n' +
+                '    class Fish{\n' +
+                '      -int sizeInFeet\n' +
+                '      -canEat()\n' +
+                '    }\n' +
+                '    class Zebra{\n' +
+                '      +bool is_wild\n' +
+                '      +run()\n' +
+                '    }';
+            }
+            else if(newValue == 'stateDiagram'){
+                code = 'stateDiagram-v2\n' +
+                '    [*] --> Still\n' +
+                '    Still --> [*]\n' +
+                '    Still --> Moving\n' +
+                '    Moving --> Still\n' +
+                '    Moving --> Crash\n' +
+                '    Crash --> [*]\n';
+            }
+            else if(newValue == 'pie'){
+                code = 'pie title Pets adopted by volunteers\n' +
+                '    "Dogs" : 386\n' +
+                '    "Cats" : 85\n' +
+                '    "Rats" : 15\n';
+            }
+            else if(newValue == 'erDiagram'){
+                code = 'erDiagram\n' +
+                '    CUSTOMER }|..|{ DELIVERY-ADDRESS : has\n' +
+                '    CUSTOMER ||--o{ ORDER : places\n' +
+                '    CUSTOMER ||--o{ INVOICE : "liable for"\n' +
+                '    DELIVERY-ADDRESS ||--o{ ORDER : receives\n' +
+                '    INVOICE ||--|{ ORDER : covers\n' +
+                '    ORDER ||--|{ ORDER-ITEM : includes\n' +
+                '    PRODUCT-CATEGORY ||--|{ PRODUCT : contains\n' +
+                '    PRODUCT ||--o{ ORDER-ITEM : "ordered in"\n';
+            }
+            else if(newValue == 'gitGraph'){
+                code = 'gitGraph:\n' +
+                    'options\n' +
+                    '{\n' +
+                    '    "nodeSpacing": 150,\n' +
+                    '    "nodeRadius": 10\n' +
+                    '}\n' +
+                    'end\n' +
+                    'commit\n' +
+                    'branch newbranch\n' +
+                    'checkout newbranch\n' +
+                    'commit\n' +
+                    'commit\n' +
+                    'checkout master\n' +
+                    'commit\n' +
+                    'commit\n' +
+                    'merge newbranch\n';
+            }
+            else if(newValue == 'journey'){
+                code = 'journey\n' +
+                '  title My working day\n' +
+                '  section Go to work\n' +
+                '    Make tea: 5: Me\n' +
+                '    Go upstairs: 3: Me\n' +
+                '    Do work: 1: Me, Cat\n' +
+                '  section Go home\n' +
+                '    Go downstairs: 5: Me\n' +
+                '    Sit down: 3: Me\n';
             }
             viewDiagram(code);
         }
