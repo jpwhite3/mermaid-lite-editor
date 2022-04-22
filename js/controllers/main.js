@@ -200,22 +200,17 @@ angular.module('MermaidLiteApp')
                 '    PRODUCT ||--o{ ORDER-ITEM : "ordered in"\n';
             }
             else if(newValue == 'gitGraph'){
-                code = 'gitGraph:\n' +
-                    'options\n' +
-                    '{\n' +
-                    '    "nodeSpacing": 150,\n' +
-                    '    "nodeRadius": 10\n' +
-                    '}\n' +
-                    'end\n' +
-                    'commit\n' +
-                    'branch newbranch\n' +
-                    'checkout newbranch\n' +
-                    'commit\n' +
-                    'commit\n' +
-                    'checkout master\n' +
-                    'commit\n' +
-                    'commit\n' +
-                    'merge newbranch\n';
+                code = 'gitGraph\n' +
+                    '  commit\n' +
+                    '  commit\n' +
+                    '  branch develop\n' +
+                    '  checkout develop\n' +
+                    '  commit\n' +
+                    '  commit\n' +
+                    '  checkout main\n' +
+                    '  commit\n' +
+                    '  commit\n' +
+                    '  merge develop\n';
             }
             else if(newValue == 'journey'){
                 code = 'journey\n' +
