@@ -26,14 +26,13 @@
         <meta name="msapplication-TileImage" content="./img/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-        <title>Mermaid Lite Editor</title>
+        <title>Mermaid Lite Editor v10.8.0</title>
 
         <!-- Bootstrap CSS -->
-        <link href="./css/vendor/bootstrap/5.1.3/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/vendor/bootstrap/5.3.3/bootstrap.min.css" rel="stylesheet">
 
         <!-- Vendor -->
         <link href="./css/all.min.css" rel="stylesheet">
-        <link href="./css/vendor/mermaid/mermaid.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="./css/style.css">
@@ -45,8 +44,8 @@
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <a class="navbar-brand" href="#">
-                  <img src="./img/sirene.png" alt="logo" style="width: 50px; margin:-5px 0px 0px 10px;"/>
-                  &nbsp;Mermaid Lite Editor
+                    <img src="./img/sirene.png" alt="logo" style="width: 50px; margin:-5px 0px 0px 10px;"/>
+                    &nbsp;Mermaid Lite Editor v10.8.0
                 </a>
             </nav>
         </header>
@@ -71,6 +70,8 @@
                                             <option value="stateDiagram">State Diagram</option>
                                             <option value="sequence">Sequence Diagram</option>
                                             <option value="gitGraph">Git Graph</option>
+                                            <option value="reqDiagram">Requirement Diagram</option>
+                                            <option value="journey">User Journey</option>
                                         </optgroup>
                                         <optgroup label="Flow charts">
                                             <option value="fc-t2b">Top to bottom</option>
@@ -78,10 +79,16 @@
                                             <option value="fc-l2r">Left to right</option>
                                             <option value="fc-r2l">Right to left</option>
                                         </optgroup>
-                                        <optgroup label="Other">
+                                        <optgroup label="Project Management">
                                             <option value="gantt">Gantt chart</option>
+                                            <option value="timeline">Timeline</option>
+                                        </optgroup>
+                                        <optgroup label="Other">
                                             <option value="pie">Pie Chart</option>
-                                            <option value="journey">User Journey</option>
+                                            <option value="quadChart">Quadrant Chart</option>
+                                            <option value="mindMap">Mindmap</option>
+                                            <option value="xyChart">XYChart (beta)</option>
+                                            <option value="blockDiagram">Block Diagram (beta)</option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -131,7 +138,7 @@
                                 <a class="btn btn-outline-secondary" ng-href="{%viewlink%}" target="_blank">
                                     <i class="fas fa-share" aria-hidden="true"></i>&nbsp; Sharable Link
                                 </a>
-                                <a class="btn btn-outline-secondary" ng-href="{%svglink%}" download="diagram.svg">
+                                <a class="btn btn-outline-secondary" ng-click="buildSVGURL()" ng-href="{%svglink%}" download="diagram.svg">
                                     <i class="fas fa-bezier-curve" aria-hidden="true"></i>&nbsp; Save as SVG
                                 </a>
                             </div>
@@ -143,7 +150,7 @@
 
         <!-- Core JavaScript -->
         <script src="./js/vendor/jquery/jquery-3.6.0.min.js"></script>
-        <script src="./js/vendor/bootstrap/5.1.3/bootstrap.bundle.min.js"></script>
+        <script src="./js/vendor/bootstrap/5.3.3/bootstrap.bundle.min.js"></script>
         <script src="./js/vendor/mermaid/mermaid.min.js"></script>
         <script src="./js/vendor/angular/1.8.2/angular.min.js"></script>
         <script src="./js/vendor/angular/1.8.2/angular-sanitize.min.js"></script>

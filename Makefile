@@ -15,6 +15,8 @@ export BROWSER_PYSCRIPT
 
 BROWSER := python3 -c "$$BROWSER_PYSCRIPT"
 
-run: ## check code coverage quickly with the default Python
+open:
 	$(BROWSER) ./index.html
 
+serve:
+	python3 -m http.server 8000

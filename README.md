@@ -1,2 +1,3 @@
-# Lagoon
-Browser based diagramming tool powered by Mermaid (http://knsv.github.io/mermaid/)
+# Mermaid Lite Editor
+
+Browser based diagramming tool powered by Mermaid (https://github.com/mermaid-js/mermaid)
